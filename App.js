@@ -14,12 +14,13 @@ import { RefreshControl, TextInput } from "react-native-web";
 export default function Search() {
   const [searchTerms, setSearchTerms] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [chosenBook, setChosenBook] = useState({});
   const bookList = [];
 
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerms}&key=AIzaSyCrfrVILZq2XjRAoDRZVEQbyVoG3Ru91cY`
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}`
       )
       .then(({ data }) => {
 
@@ -50,13 +51,16 @@ export default function Search() {
      
       })
       .catch((err) => {});
-  }, [searchTerms]);
+  }, [searchTerms, chosenBook]);
 
-
+console.log(chosenBook, "<-")
   return (
     <View style={styles.container}>
       <TextInput
         value={searchTerms}
+        onChangeText={(searchTerms) => {
+          setSearchTerms(searchTerms);
+        }}
         style={styles.textBoxes}
         placeholder="Search:"
       ></TextInput>
@@ -64,7 +68,7 @@ export default function Search() {
         return (
           <View key={index}>
             <br></br>
-            <Text>{book.title}</Text>
+            <Text onPress={() => setChosenBook(book)}> {book.title}</Text>
             <Text>{book.author}</Text>
             <Text>{book.publishedDate}</Text>
             <br></br>
