@@ -5,6 +5,10 @@ This repo contains a test project created during Northcoders final group project
 The main project is Bibliotech - a peer-to-peer booklending app:
 https://github.com/defective-pikachu
 
+My fork of the main project is here: https://github.com/ursa1minor/bibliotech
+
+The group project blog is here: https://werewallies.wordpress.com/
+
 Both this project and Bibliotech were created using React Native with Expo.
 
 # React Native with Expo setup:
